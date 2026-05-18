@@ -381,7 +381,7 @@ Le badge CI a été ajouté dans le README.
 python3 src/run.py
 ```
 ![Capture](captures/result.png)
-
+![Capture](captures/res.png)
 #  Conclusion
 
 Ce TP a permis de mettre en œuvre un pipeline ETL DataOps complet utilisant pandas, PostgreSQL, Docker, pytest et GitHub Actions.
