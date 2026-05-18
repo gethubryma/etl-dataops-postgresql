@@ -1,7 +1,7 @@
 import pytest
 import pandas as pd
 
-from src.transform import clean, aggregate_by_month
+from src.transform import clean, aggregate_by_month, aggregate_by_category
 
 
 class TestClean:
@@ -53,3 +53,24 @@ class TestAggregateByMonth:
     def test_agg_ca_positifs(self, df_clean):
         mart = aggregate_by_month(df_clean)
         assert (mart["chiffre_affaires"] > 0).all()
+
+
+class TestAggregateByCategory:
+
+    def test_agg_category_nombre_categories(self, df_clean):
+        mart = aggregate_by_category(df_clean)
+        assert len(mart) == 1
+
+    def test_agg_category_ca_total(self, df_clean):
+        mart = aggregate_by_category(df_clean)
+        assert mart["chiffre_affaires"].sum() == pytest.approx(320.5)
+
+    def test_agg_category_colonnes_presentes(self, df_clean):
+        mart = aggregate_by_category(df_clean)
+        assert set(mart.columns) >= {"categorie", "chiffre_affaires", "nb_transactions"}
+
+    def test_agg_category_ca_positifs(self, df_clean):
+        mart = aggregate_by_category(df_clean)
+        assert (mart["chiffre_affaires"] > 0).all()
+
+

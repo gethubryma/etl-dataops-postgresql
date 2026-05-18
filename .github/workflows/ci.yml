@@ -55,3 +55,8 @@ jobs:
 
       - name: Tests integration (necessite PostgreSQL)
         run: pytest -v tests/test_load.py
+
+      - name: Coverage tests
+        run: pytest --cov=src.transform --cov=src.load --cov-report=term-missing
+
+        

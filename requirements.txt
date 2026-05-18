@@ -2,3 +2,4 @@ pandas
 pytest
 psycopg2-binary
 sqlalchemy
+pytest-cov

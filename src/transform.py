@@ -49,3 +49,21 @@ def aggregate_by_month(df: pd.DataFrame) -> pd.DataFrame:
     )
 
     return mart
+
+def aggregate_by_category(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Agregation du CA par categorie.
+    Prend en entree le DataFrame nettoye.
+    """
+
+    mart = (
+        df.groupby("categorie")
+          .agg(
+              chiffre_affaires=("montant", "sum"),
+              nb_transactions=("montant", "count")
+          )
+          .reset_index()
+          .sort_values("categorie")
+    )
+
+    return mart
